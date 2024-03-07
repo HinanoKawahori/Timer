@@ -30,23 +30,20 @@ class MyHomePage extends StatefulWidget {
 
   @override
   State<MyHomePage> createState() => _MyHomePageState();
-  //statefulwidgetは、状態をもつwidgetなので、createStateがある。
+  //statefulwidgetは、状態をもつwidgetなので、createState（create状態）がある。
 }
 
 class _MyHomePageState extends State<MyHomePage> {
+  //変数の定義
   int _minute = 0;
   int _second = 0;
   double _millisecond = 0;
-
-  Timer? _minuteTimer;
-  Timer? _secondTimer;
   Timer? _milliSecondTimer;
   bool _isRunning = true;
 
   @override
   void initState() {
     super.initState();
-
 //millisecondTimer
     _milliSecondTimer =
         Timer.periodic(const Duration(milliseconds: 10), (milliSecondimer) {
@@ -76,7 +73,6 @@ class _MyHomePageState extends State<MyHomePage> {
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
           //タイマー表記
-
           Row(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
@@ -88,7 +84,7 @@ class _MyHomePageState extends State<MyHomePage> {
             ],
           ),
 
-          //toggledボタン   gっh
+          //toggledボタン
           ElevatedButton(
             onPressed: () {
               toggleTimer();
@@ -112,11 +108,11 @@ class _MyHomePageState extends State<MyHomePage> {
     );
   }
 
-  //stop関数
+//関数
+  //toggle関数
   void toggleTimer() {
     if (_isRunning) {
       _milliSecondTimer?.cancel();
-      //状態を再通知するのを忘れずに！
       setState(() {
         _isRunning = false;
       });
@@ -135,7 +131,6 @@ class _MyHomePageState extends State<MyHomePage> {
           }
         });
       });
-      //状態を再通知するのを忘れずに！
       setState(() {
         _isRunning = true;
       });
